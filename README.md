@@ -2,44 +2,70 @@
 
 Har roz ke kaam, smart tareeqe se.
 
-AI Life Assistant is an everyday AI app for Urdu, Hindi, and Roman Urdu users. The MVP combines three practical modules in one product.
+AI Life Assistant is an early MVP for people who want practical help with daily tasks, career progress, and simple home planning. The first version is intentionally small: one app, three useful sections, and a clean mobile-first experience.
 
-## MVP Modules
+## Why this exists
 
-1. Daily Life Assistant
-   - WhatsApp replies
-   - Study plans
-   - Daily planning
-   - Document writing
+Most people do not want to learn perfect AI prompts. They want a simple place where they can tap a use case, explain the problem in normal language, and get a useful answer quickly.
 
-2. Job/Freelance Coach
-   - CV improvement
-   - Gig ideas
-   - Proposal writing
-   - Interview prep
+## MVP sections
 
-3. Meal + Budget Planner
-   - What to cook today
-   - Budget meals
-   - Grocery list
-   - Leftover ideas
+### Daily Life Assistant
 
-## Day 1 Status
+For everyday writing and planning tasks.
 
-This branch adds the initial Next.js app shell, homepage, module cards, global styles, and package setup.
+- WhatsApp replies
+- Study plans
+- Daily planning
+- Document writing
 
-## Local Setup
+### Job and Freelance Coach
+
+For students, job seekers, and beginners trying to improve their career options.
+
+- CV improvement
+- Gig ideas
+- Proposal writing
+- Interview prep
+
+### Meal and Budget Planner
+
+For simple food and budget decisions.
+
+- What to cook today
+- Budget meals
+- Grocery list
+- Leftover ideas
+
+## Current status
+
+Day 1 adds the foundation:
+
+- Next.js app shell
+- Landing page
+- Module card component
+- Initial module data
+- Global responsive styles
+- Product documentation
+
+## Local setup
 
 ```bash
 npm install
 npm run dev
 ```
 
-Then open the local development URL shown in your terminal.
+Open the local URL shown in the terminal.
 
-## Next Steps
+## Project notes
 
-- Day 2: improve UI shell and add module navigation
-- Day 3: build the Daily Life Assistant chat flow
-- Day 4: build the Job/Freelance Coach flow
-- Day 5: build the Meal + Budget Planner flow
+- Product notes: `docs/product-notes.md`
+- Roadmap: `docs/roadmap.md`
+- Working style: `docs/working-style.md`
+
+## Next steps
+
+- Day 2: app shell and module navigation
+- Day 3: Daily Life Assistant flow
+- Day 4: Job and Freelance Coach flow
+- Day 5: Meal and Budget Planner flow
