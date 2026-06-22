@@ -1,4 +1,5 @@
 import AppHeader from '../components/AppHeader';
+import DailyLifeFlow from '../components/DailyLifeFlow';
 import HowItWorks from '../components/HowItWorks';
 import ModuleCard from '../components/ModuleCard';
 import ModuleNav from '../components/ModuleNav';
@@ -20,7 +21,7 @@ export default function HomePage() {
                 everyday planning, career progress, or simple meal decisions.
               </p>
               <div className="actions">
-                <a className="primaryButton" href="#modules">Explore modules</a>
+                <a className="primaryButton" href="#daily-life-flow">Try Daily Life flow</a>
                 <a className="secondaryButton" href="#how-it-works">See the flow</a>
               </div>
             </div>
@@ -45,6 +46,7 @@ export default function HomePage() {
           ))}
         </section>
 
+        <DailyLifeFlow />
         <HowItWorks />
         <RoadmapPreview />
       </main>
