@@ -1,14 +1,21 @@
-export default function ModuleCard({ title, icon, description, points }) {
+export default function ModuleCard(props) {
+  const module = props.module;
+
   return (
-    <section className="card">
-      <div className="cardIcon">{icon}</div>
-      <h2>{title}</h2>
-      <p>{description}</p>
+    <article className="card" id={module.slug}>
+      <div className="cardTopline">
+        <div className="cardIcon">{module.icon}</div>
+        <span>{module.audience}</span>
+      </div>
+
+      <h2>{module.title}</h2>
+      <p>{module.description}</p>
+
       <ul>
-        {points.map((point) => (
+        {module.points.map((point) => (
           <li key={point}>{point}</li>
         ))}
       </ul>
-    </section>
+    </article>
   );
 }
