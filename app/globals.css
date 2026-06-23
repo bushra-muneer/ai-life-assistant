@@ -377,6 +377,30 @@ textarea {
   background: #eef2ff;
 }
 
+.templateGuide {
+  border: 1px solid #e0e7ff;
+  border-radius: 18px;
+  padding: 16px;
+  background: #f8fafc;
+}
+
+.templateGuide span {
+  display: block;
+  margin-bottom: 8px;
+  color: #3730a3;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.templateGuide ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #334155;
+  line-height: 1.7;
+}
+
 .inputLabel {
   font-weight: 900;
 }
