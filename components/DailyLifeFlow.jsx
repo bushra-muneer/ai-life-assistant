@@ -1,69 +1,38 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-
-const promptOptions = [
-  {
-    id: 'reply',
-    title: 'Write a reply',
-    helper: 'Turn a rough message into a clear, polite response.',
-    placeholder: 'Paste the message you need to reply to...',
-    sample: 'Thanks for sharing this. I understand the situation. I will review it and get back to you with a clear update soon.'
-  },
-  {
-    id: 'plan',
-    title: 'Plan my day',
-    helper: 'Organize tasks into a simple daily action plan.',
-    placeholder: 'Write your tasks for today...',
-    sample: 'Start with the most urgent task, keep one focused work block, handle small errands together, and end with a quick review.'
-  },
-  {
-    id: 'explain',
-    title: 'Explain simply',
-    helper: 'Make a confusing topic easier to understand.',
-    placeholder: 'Write the topic or paragraph you want explained...',
-    sample: 'Here is the simple meaning: this idea is about breaking a complex task into smaller steps so it becomes easier to manage.'
-  }
-];
+import { dailyLifePromptTemplates } from '../data/dailyLifePromptTemplates';
 
 export default function DailyLifeFlow() {
-  const [selectedPrompt, setSelectedPrompt] = useState(promptOptions[0]);
+  const [selectedPrompt, setSelectedPrompt] = useState(dailyLifePromptTemplates[0]);
   const [userText, setUserText] = useState('');
 
   const preview = useMemo(() => {
     const trimmedText = userText.trim();
 
     if (!trimmedText) {
-      return selectedPrompt.sample;
+      return selectedPrompt.emptyPreview;
     }
 
-    if (selectedPrompt.id === 'reply') {
-      return `Here is a clear reply you can use:\n\nThanks for your message. I understand your point. I will check this properly and update you with the next step soon.\n\nOriginal context: ${trimmedText}`;
-    }
-
-    if (selectedPrompt.id === 'plan') {
-      return `Simple plan:\n\n1. Pick the most important task first.\n2. Keep one focused block for deep work.\n3. Group small tasks together.\n4. End the day by checking what is still pending.\n\nYour tasks: ${trimmedText}`;
-    }
-
-    return `Simple explanation:\n\nThis means we should understand the main idea first, then break it into smaller parts. That makes it easier to act on.\n\nTopic: ${trimmedText}`;
+    return `${selectedPrompt.previewTitle}\n\n${selectedPrompt.output}\n\n${selectedPrompt.contextLabel}: ${trimmedText}`;
   }, [selectedPrompt, userText]);
 
   return (
     <section className="dailyFlowSection" id="daily-life-flow">
       <div className="container dailyFlowGrid">
         <div className="dailyFlowIntro">
-          <p className="eyebrow">Day 3 build</p>
-          <h2>Daily Life Assistant interactive flow.</h2>
+          <p className="eyebrow">Day 4 build</p>
+          <h2>Daily Life prompt templates.</h2>
           <p>
-            Choose a daily task, add your rough text, and preview the kind of
-            simple help this assistant will provide. This is a front-end MVP flow
-            only, so no private data is sent anywhere yet.
+            Choose a reusable template, add your rough text, and preview how the
+            assistant should structure useful daily help. The templates stay local
+            for now and can later connect to the server-side AI route.
           </p>
         </div>
 
         <div className="dailyFlowCard">
           <div className="promptChoices" aria-label="Daily Life prompt choices">
-            {promptOptions.map((option) => (
+            {dailyLifePromptTemplates.map((option) => (
               <button
                 className={selectedPrompt.id === option.id ? 'promptChoice active' : 'promptChoice'}
                 key={option.id}
@@ -74,6 +43,15 @@ export default function DailyLifeFlow() {
                 <span>{option.helper}</span>
               </button>
             ))}
+          </div>
+
+          <div className="templateGuide" aria-label="Selected prompt template structure">
+            <span>Template structure</span>
+            <ul>
+              {selectedPrompt.templateSteps.map((step) => (
+                <li key={step}>{step}</li>
+              ))}
+            </ul>
           </div>
 
           <label className="inputLabel" htmlFor="daily-life-input">
