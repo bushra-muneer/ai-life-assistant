@@ -1,6 +1,7 @@
 import AppHeader from '../components/AppHeader';
 import DailyLifeFlow from '../components/DailyLifeFlow';
 import HowItWorks from '../components/HowItWorks';
+import JobFreelanceFlow from '../components/JobFreelanceFlow';
 import ModuleCard from '../components/ModuleCard';
 import ModuleNav from '../components/ModuleNav';
 import RoadmapPreview from '../components/RoadmapPreview';
@@ -22,7 +23,7 @@ export default function HomePage() {
               </p>
               <div className="actions">
                 <a className="primaryButton" href="#daily-life-flow">Try Daily Life flow</a>
-                <a className="secondaryButton" href="#how-it-works">See the flow</a>
+                <a className="secondaryButton" href="#job-freelance-flow">Try Career flow</a>
               </div>
             </div>
 
@@ -47,6 +48,7 @@ export default function HomePage() {
         </section>
 
         <DailyLifeFlow />
+        <JobFreelanceFlow />
         <HowItWorks />
         <RoadmapPreview />
       </main>
