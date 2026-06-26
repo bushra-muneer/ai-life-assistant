@@ -2,6 +2,7 @@ import AppHeader from '../components/AppHeader';
 import DailyLifeFlow from '../components/DailyLifeFlow';
 import HowItWorks from '../components/HowItWorks';
 import JobFreelanceFlow from '../components/JobFreelanceFlow';
+import MealBudgetFlow from '../components/MealBudgetFlow';
 import ModuleCard from '../components/ModuleCard';
 import ModuleNav from '../components/ModuleNav';
 import RoadmapPreview from '../components/RoadmapPreview';
@@ -24,6 +25,7 @@ export default function HomePage() {
               <div className="actions">
                 <a className="primaryButton" href="#daily-life-flow">Try Daily Life flow</a>
                 <a className="secondaryButton" href="#job-freelance-flow">Try Career flow</a>
+                <a className="secondaryButton" href="#meal-budget-flow">Try Meal flow</a>
               </div>
             </div>
 
@@ -49,6 +51,7 @@ export default function HomePage() {
 
         <DailyLifeFlow />
         <JobFreelanceFlow />
+        <MealBudgetFlow />
         <HowItWorks />
         <RoadmapPreview />
       </main>
