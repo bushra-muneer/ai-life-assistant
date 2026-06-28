@@ -1,6 +1,8 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+
+const getStorageKey = (sectionId) => `ai-life-assistant:${sectionId}:saved-answers`;
 
 export default function AssistantFlow({
   sectionId,
@@ -15,6 +17,9 @@ export default function AssistantFlow({
 }) {
   const [selectedTemplate, setSelectedTemplate] = useState(templates[0]);
   const [userText, setUserText] = useState('');
+  const [savedAnswers, setSavedAnswers] = useState([]);
+
+  const storageKey = useMemo(() => getStorageKey(sectionId), [sectionId]);
 
   const preview = useMemo(() => {
     const trimmedText = userText.trim();
@@ -25,6 +30,39 @@ export default function AssistantFlow({
 
     return `${selectedTemplate.previewTitle}\n\n${selectedTemplate.output}\n\n${selectedTemplate.contextLabel}: ${trimmedText}`;
   }, [selectedTemplate, userText]);
+
+  useEffect(() => {
+    const rawSavedAnswers = window.localStorage.getItem(storageKey);
+
+    if (!rawSavedAnswers) {
+      return;
+    }
+
+    try {
+      setSavedAnswers(JSON.parse(rawSavedAnswers));
+    } catch {
+      setSavedAnswers([]);
+    }
+  }, [storageKey]);
+
+  const savePreview = () => {
+    const nextSavedAnswers = [
+      {
+        id: Date.now(),
+        templateTitle: selectedTemplate.title,
+        text: preview
+      },
+      ...savedAnswers
+    ].slice(0, 3);
+
+    setSavedAnswers(nextSavedAnswers);
+    window.localStorage.setItem(storageKey, JSON.stringify(nextSavedAnswers));
+  };
+
+  const clearSavedAnswers = () => {
+    setSavedAnswers([]);
+    window.localStorage.removeItem(storageKey);
+  };
 
   return (
     <section className="dailyFlowSection" id={sectionId}>
@@ -74,6 +112,30 @@ export default function AssistantFlow({
             <span>Preview answer</span>
             <p>{preview}</p>
           </div>
+
+          <div className="actions">
+            <button className="primaryButton" onClick={savePreview} type="button">
+              Save preview
+            </button>
+            {savedAnswers.length > 0 ? (
+              <button className="secondaryButton" onClick={clearSavedAnswers} type="button">
+                Clear saved
+              </button>
+            ) : null}
+          </div>
+
+          {savedAnswers.length > 0 ? (
+            <div className="templateGuide" aria-label="Saved answers">
+              <span>Saved locally</span>
+              <ul>
+                {savedAnswers.map((answer) => (
+                  <li key={answer.id}>
+                    <strong>{answer.templateTitle}:</strong> {answer.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </div>
       </div>
     </section>
