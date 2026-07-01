@@ -1,17 +1,9 @@
-const MODULE_PROMPTS = {
-  daily: 'You help users with daily life tasks such as replies, planning, simple explanations, and practical writing. Keep answers clear, kind, and easy to act on.',
-  career: 'You help students, job seekers, and beginner freelancers improve CV lines, proposals, interview answers, and career actions. Keep answers practical and beginner-friendly.',
-  meal: 'You help users plan simple meals, grocery lists, and budget-friendly food ideas. Prefer practical, low-waste, affordable suggestions.'
-};
+import { getModuleSystemPrompt } from '../../../data/moduleSystemPrompts';
 
 const MAX_MESSAGE_LENGTH = 2000;
 
 function cleanText(value) {
   return typeof value === 'string' ? value.trim() : '';
-}
-
-function getModulePrompt(module) {
-  return MODULE_PROMPTS[module] || MODULE_PROMPTS.daily;
 }
 
 function buildFallbackReply({ module, message, templateTitle }) {
@@ -93,7 +85,7 @@ export async function POST(request) {
         input: [
           {
             role: 'system',
-            content: getModulePrompt(module)
+            content: getModuleSystemPrompt(module)
           },
           {
             role: 'user',
