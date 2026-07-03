@@ -5,6 +5,7 @@ import JobFreelanceFlow from '../components/JobFreelanceFlow';
 import MealBudgetFlow from '../components/MealBudgetFlow';
 import ModuleCard from '../components/ModuleCard';
 import ModuleNav from '../components/ModuleNav';
+import OnboardingPreferences from '../components/OnboardingPreferences';
 import RoadmapPreview from '../components/RoadmapPreview';
 import { modules } from '../modules';
 
@@ -41,6 +42,7 @@ export default function HomePage() {
           </div>
         </section>
 
+        <OnboardingPreferences />
         <ModuleNav modules={modules} />
 
         <section className="container grid" id="modules">
