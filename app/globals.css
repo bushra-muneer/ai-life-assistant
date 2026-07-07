@@ -30,6 +30,22 @@ textarea {
   font: inherit;
 }
 
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+a:focus-visible,
+button:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #3730a3;
+  outline-offset: 3px;
+}
+
 .container {
   width: min(1120px, calc(100% - 32px));
   margin: 0 auto;
@@ -42,6 +58,23 @@ textarea {
   border-bottom: 1px solid rgba(226, 232, 240, 0.8);
   background: rgba(248, 250, 252, 0.86);
   backdrop-filter: blur(14px);
+}
+
+.skipLink {
+  position: absolute;
+  left: 16px;
+  top: 10px;
+  z-index: 30;
+  transform: translateY(-140%);
+  border-radius: 999px;
+  padding: 10px 14px;
+  background: #111827;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.skipLink:focus {
+  transform: translateY(0);
 }
 
 .headerInner {
@@ -80,6 +113,11 @@ textarea {
   color: #475569;
   font-size: 14px;
   font-weight: 700;
+}
+
+.headerNav a,
+.headerAction {
+  min-height: 44px;
 }
 
 .headerAction {
@@ -172,10 +210,15 @@ textarea {
 
 .primaryButton,
 .secondaryButton {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 16px;
   padding: 14px 18px;
   font-weight: 800;
   border: 1px solid transparent;
+  text-align: center;
 }
 
 .primaryButton {
@@ -347,6 +390,7 @@ textarea {
 }
 
 .promptChoice {
+  min-height: 74px;
   border: 1px solid #e2e8f0;
   border-radius: 18px;
   padding: 14px;
@@ -458,14 +502,76 @@ textarea {
   .promptChoices {
     grid-template-columns: 1fr;
   }
+
+  .heroGrid,
+  .dailyFlowGrid,
+  .roadmapCard {
+    gap: 18px;
+  }
 }
 
 @media (max-width: 560px) {
+  .container {
+    width: min(100% - 24px, 1120px);
+  }
+
+  .headerInner {
+    min-height: 64px;
+  }
+
+  .brand span:last-child {
+    font-size: 15px;
+  }
+
   .headerAction {
     display: none;
   }
 
+  .hero {
+    padding: 42px 0 24px;
+  }
+
   .hero h1 {
-    font-size: 42px;
+    font-size: 40px;
+    line-height: 1;
+  }
+
+  .hero p,
+  .sectionIntro p,
+  .dailyFlowIntro p {
+    font-size: 16px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+  }
+
+  .heroPanel,
+  .roadmapCard,
+  .card,
+  .dailyFlowIntro,
+  .dailyFlowCard {
+    border-radius: 22px;
+    padding: 20px;
+  }
+
+  .grid {
+    padding-bottom: 44px;
+  }
+
+  .moduleNavSection,
+  .infoSection,
+  .roadmapSection,
+  .dailyFlowSection {
+    padding: 24px 0;
+  }
+
+  .promptChoice {
+    min-height: auto;
   }
 }
